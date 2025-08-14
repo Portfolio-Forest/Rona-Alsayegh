@@ -1146,23 +1146,6 @@
             border-radius: 20px;
             font-size: 0.8rem;
         }
-
-        /* Service badges for Daniel Walters project */
-        .service-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .service-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
     </style>
 </head>
 <body>
@@ -1259,64 +1242,9 @@
                 <button class="filter-btn" data-filter="content">Articles & Content</button>
                 <button class="filter-btn" data-filter="social">Social Media</button>
                 <button class="filter-btn" data-filter="design">Design Work</button>
-                <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
             </div>
 
             <div class="projects-showcase fade-in">
-                <!-- Daniel Walters Company - Comprehensive Project -->
-                <div class="project-item" data-category="marketing" style="grid-column: 1 / -1;">
-                    <div class="project-thumbnail" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="project-type-badge">Full Service</div>
-                        👓
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo" style="background: #2563eb;">DW</div>
-                            <div>
-                                <div class="project-title">Complete Digital Marketing & Management</div>
-                                <div class="project-client">Daniel Walters Authentic Eyewear</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Comprehensive digital marketing and management services for Daniel Walters Eyewear, including website management, content creation, social media strategy, email marketing campaigns, and Google Ads management for their prescription eyeglasses and sunglasses business.</p>
-                        
-                        <div class="service-badges">
-                            <span class="service-badge">📝 Blog Writing</span>
-                            <span class="service-badge">📊 Data Entry</span>
-                            <span class="service-badge">🌐 Website Management</span>
-                            <span class="service-badge">📸 Instagram Posts</span>
-                            <span class="service-badge">📧 Mailchimp Campaigns</span>
-                            <span class="service-badge">🎯 Google Ads</span>
-                        </div>
-                        
-                        <div class="project-links">
-                            <a href="https://www.instagram.com/danielwalterseyewear" target="_blank" class="project-link">
-                                📱 Instagram Page
-                            </a>
-                            <a href="#contact" class="project-link">
-                                📄 View Portfolio
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">6+</div>
-                                <div class="stat-label">Services</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Eyewear</div>
-                                <div class="stat-label">Industry</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Ongoing</div>
-                                <div class="stat-label">Status</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Full Service</div>
-                                <div class="stat-label">Scope</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Dr. Nikki Cohen Website Articles -->
                 <div class="project-item" data-category="content">
                     <div class="project-thumbnail">
@@ -1547,19 +1475,19 @@
                     </div>
                     <div class="project-info">
                         <div class="project-title">Complete Digital Marketing Portfolio</div>
-                        <div class="project-client">Healthcare & Eyewear Industry Specialist</div>
-                        <p class="project-description">Comprehensive digital marketing and design services across multiple industries, including website development, social media management, content creation, email marketing, paid advertising, and brand development across multiple platforms and mediums.</p>
+                        <div class="project-client">Healthcare Industry Specialist</div>
+                        <p class="project-description">Comprehensive digital marketing and design services for medical professionals, including website development, social media management, content creation, and brand development across multiple platforms and mediums.</p>
                         <div class="project-stats">
                             <div class="stat">
-                                <div class="stat-number">3+</div>
+                                <div class="stat-number">2+</div>
                                 <div class="stat-label">Clients</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-number">7+</div>
+                                <div class="stat-number">5+</div>
                                 <div class="stat-label">Projects</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-number">5+</div>
+                                <div class="stat-number">3</div>
                                 <div class="stat-label">Platforms</div>
                             </div>
                             <div class="stat">
@@ -1800,4 +1728,92 @@
             submitBtn.style.background = '#10b981';
             
             setTimeout(() => {
-                submit
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+                this.reset();
+            }, 3000);
+        });
+
+        // Project filtering functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                projectItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue || item.getAttribute('data-category') === 'all') {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeInUp 0.5s ease';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add interactive effects
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Contact method click analytics (optional tracking)
+        document.querySelectorAll('.contact-method').forEach(method => {
+            method.addEventListener('click', function() {
+                const methodType = this.querySelector('strong').textContent;
+                console.log(`Contact method used: ${methodType}`);
+            });
+        });
+
+        // Add typing effect to hero subtitle
+        const subtitle = document.querySelector('.hero-subtitle');
+        const originalText = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                subtitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add glow effect to contact methods on hover
+        document.querySelectorAll('.contact-method').forEach(method => {
+            method.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 30px rgba(99, 102, 241, 0.3)';
+            });
+            
+            method.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
