@@ -82,6 +82,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
@@ -103,6 +104,85 @@
             width: 100%;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-white);
+            z-index: 2000;
+            transition: left 0.3s ease;
+            padding-top: 4rem;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 2rem;
+            gap: 1rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--bg-light);
+            display: flex;
+            align-items: center;
+            min-height: 44px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -114,6 +194,7 @@
             color: white;
             position: relative;
             overflow: hidden;
+            padding: 2rem 1rem;
         }
 
         .hero::before {
@@ -139,20 +220,22 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 3vw, 1.25rem);
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.2);
             color: white;
             padding: 1rem 2rem;
@@ -162,6 +245,7 @@
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
             animation: fadeInUp 1s ease 0.4s both;
+            min-height: 44px;
         }
 
         .cta-button:hover {
@@ -184,19 +268,19 @@
 
         /* Section Styles */
         .section {
-            padding: 5rem 0;
+            padding: clamp(3rem, 8vw, 5rem) 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 clamp(1rem, 4vw, 2rem);
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: clamp(2rem, 5vw, 3rem);
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -210,20 +294,20 @@
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
             align-items: center;
         }
 
         .about-image {
-            width: 300px;
-            height: 300px;
+            width: clamp(150px, 30vw, 300px);
+            height: clamp(150px, 30vw, 300px);
             border-radius: 50%;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             color: white;
             margin: 0 auto;
             animation: pulse 2s infinite;
@@ -235,29 +319,27 @@
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             line-height: 1.8;
             color: var(--text-light);
+            text-align: center;
         }
 
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .skill-card {
             background: var(--bg-white);
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 15px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
             border: 1px solid rgba(99, 102, 241, 0.1);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
+            text-align: center;
         }
 
         .skill-icon {
@@ -270,18 +352,24 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem;
         }
 
         .skill-card h3 {
             margin-bottom: 1rem;
             color: var(--text-dark);
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+        }
+
+        .skill-card p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.6;
         }
 
         /* Experience Section */
         .timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: clamp(1rem, 3vw, 2rem);
         }
 
         .timeline::before {
@@ -298,16 +386,16 @@
             position: relative;
             margin-bottom: 3rem;
             background: var(--bg-white);
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 15px;
             box-shadow: var(--shadow);
-            margin-left: 2rem;
+            margin-left: clamp(1rem, 3vw, 2rem);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -3rem;
+            left: clamp(-2rem, -4vw, -3rem);
             top: 2rem;
             width: 12px;
             height: 12px;
@@ -317,24 +405,34 @@
             box-shadow: 0 0 0 3px var(--primary-color);
         }
 
+        .timeline-item h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
         /* Contact Section */
         .contact {
             background: var(--bg-light);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            min-height: auto;
+            padding: clamp(3rem, 8vw, 5rem) 0;
         }
 
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: clamp(2rem, 5vw, 4rem);
             align-items: start;
         }
 
         .contact-info {
             background: var(--bg-white);
-            padding: 3rem;
+            padding: clamp(2rem, 5vw, 3rem);
             border-radius: 20px;
             box-shadow: var(--shadow);
         }
@@ -350,19 +448,20 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.5rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
             background: var(--bg-light);
             border-radius: 15px;
             transition: all 0.3s ease;
             text-decoration: none;
             color: var(--text-dark);
             border: 2px solid transparent;
+            min-height: 60px;
         }
 
         .contact-method:hover {
             background: var(--primary-color);
             color: white;
-            transform: translateX(10px);
+            transform: translateX(5px);
             border-color: var(--primary-color);
         }
 
@@ -375,6 +474,7 @@
             justify-content: center;
             font-size: 1.2rem;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .email-icon { background: #ea4335; color: white; }
@@ -383,7 +483,7 @@
 
         .contact-form {
             background: var(--bg-white);
-            padding: 3rem;
+            padding: clamp(2rem, 5vw, 3rem);
             border-radius: 20px;
             box-shadow: var(--shadow);
         }
@@ -397,16 +497,18 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: var(--text-dark);
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: clamp(0.8rem, 2vw, 1rem);
             border: 2px solid #e5e7eb;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             transition: all 0.3s ease;
+            min-height: 44px;
         }
 
         .form-group input:focus,
@@ -421,12 +523,16 @@
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: clamp(1rem, 2.5vw, 1.2rem);
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .submit-btn:hover {
@@ -437,17 +543,18 @@
         /* Education Section */
         .education-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .education-card {
             background: var(--bg-white);
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 15px;
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .education-card::before {
@@ -460,407 +567,232 @@
             background: var(--gradient);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
+        .education-card h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 0.5rem;
         }
 
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            margin: 3px 0;
-            transition: 0.3s;
+        .education-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100vh;
-            background: var(--bg-white);
-            z-index: 2000;
-            transition: left 0.3s ease;
-            padding-top: 4rem;
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
         }
 
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-nav-links {
+        .project-filters {
             display: flex;
-            flex-direction: column;
-            list-style: none;
-            padding: 2rem;
-            gap: 2rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 1.5rem;
+        .filter-btn {
+            background: var(--bg-white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+            border-radius: 25px;
+            cursor: pointer;
             font-weight: 600;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--bg-light);
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
-        .mobile-close {
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .projects-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .project-item {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-thumbnail {
+            height: clamp(180px, 30vw, 250px);
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(2rem, 5vw, 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-type-badge {
             position: absolute;
             top: 1rem;
-            right: 2rem;
-            font-size: 2rem;
-            cursor: pointer;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            font-weight: 600;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .about-image {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .skill-card {
-                padding: 1.5rem;
-            }
-
-            .timeline {
-                padding-left: 1rem;
-            }
-
-            .timeline-item {
-                margin-left: 1rem;
-                padding: 1.5rem;
-            }
-
-            .timeline-item::before {
-                left: -2rem;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .contact-info,
-            .contact-form {
-                padding: 2rem;
-            }
-
-            .contact-method {
-                padding: 1rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-            }
-
-            .contact-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-showcase {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .project-item {
-                margin-bottom: 1rem;
-            }
-
-            .project-info {
-                padding: 1.5rem;
-            }
-
-            .project-links {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .project-link {
-                text-align: center;
-                justify-content: center;
-            }
-
-            .project-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .stat {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.5rem 0;
-            }
-
-            .project-filters {
-                flex-direction: column;
-                gap: 0.5rem;
-                align-items: center;
-            }
-
-            .filter-btn {
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
-            }
-
-            .project-thumbnail {
-                height: 180px;
-                font-size: 2rem;
-            }
-
-            .floating-shape {
-                display: none;
-            }
+        .project-info {
+            padding: clamp(1.5rem, 4vw, 2rem);
         }
 
-        /* Extra small screens */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .skill-card,
-            .timeline-item,
-            .education-card,
-            .project-item {
-                margin: 0 0.5rem 1.5rem 0.5rem;
-            }
-
-            .contact-info,
-            .contact-form {
-                padding: 1.5rem;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 0.8rem;
-            }
-
-            .about-image {
-                width: 150px;
-                height: 150px;
-                font-size: 2.5rem;
-            }
-
-            .project-info h3 {
-                font-size: 1.1rem;
-            }
-
-            .project-description {
-                font-size: 0.9rem;
-            }
+        .project-title {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
-        /* Touch-friendly improvements */
-        @media (max-width: 768px) {
-            .skill-card:hover {
-                transform: none;
-            }
-
-            .project-item:hover {
-                transform: none;
-            }
-
-            .contact-method:hover {
-                transform: none;
-                background: var(--primary-color);
-                color: white;
-            }
-
-            /* Larger touch targets */
-            .nav-links a,
-            .mobile-nav-links a {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-            }
-
-            .filter-btn {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .project-link {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .contact-method {
-                min-height: 60px;
-            }
-
-            .cta-button {
-                min-height: 44px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
+        .project-client {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
 
-        /* Improved mobile spacing */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 2rem 1rem;
-                min-height: 90vh;
-            }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
-            .section {
-                padding: 2.5rem 0;
-            }
-
-            .about-text {
-                font-size: 1rem;
-                line-height: 1.6;
-            }
-
-            .timeline::before {
-                left: -0.5rem;
-            }
-
-            .timeline-item::before {
-                left: -1.5rem;
-            }
-
-            .project-thumbnail {
-                border-radius: 15px 15px 0 0;
-            }
-
-            .project-type-badge {
-                top: 0.5rem;
-                right: 0.5rem;
-                padding: 0.3rem 0.8rem;
-                font-size: 0.7rem;
-            }
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
-        /* Horizontal scroll fix for mobile */
-        @media (max-width: 768px) {
-            body {
-                overflow-x: hidden;
-            }
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
 
-            .container {
-                max-width: 100%;
-                overflow: hidden;
-            }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            min-height: 44px;
+            justify-content: center;
+        }
 
-            .hero::before {
-                display: none;
-            }
+        .project-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
 
-            .project-stats {
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-            }
+        .client-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
 
-            /* Better mobile form */
-            .contact-form {
-                border-radius: 15px;
-            }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--bg-light);
+        }
 
-            .form-group {
-                margin-bottom: 1rem;
-            }
+        .stat {
+            text-align: center;
+        }
 
-            .submit-btn {
-                padding: 1rem;
-                font-size: 1rem;
-                min-height: 44px;
-            }
+        .stat-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
 
-            /* Mobile-friendly project cards */
-            .project-item {
-                border-radius: 15px;
-                overflow: hidden;
-            }
+        .stat-label {
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            color: var(--text-light);
+        }
 
-            .project-info {
-                border-radius: 0 0 15px 15px;
-            }
+        /* Projects showcase */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
 
-            /* Better mobile navigation */
-            .nav-container {
-                align-items: center;
-                height: 60px;
-            }
+        .project-card {
+            background: var(--bg-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
 
-            .logo {
-                font-size: 1.3rem;
-            }
+        .project-header {
+            height: clamp(150px, 25vw, 200px);
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+
+        .project-content {
+            padding: clamp(1.5rem, 4vw, 2rem);
+            text-align: center;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
         }
 
         /* Scroll animations */
@@ -884,273 +816,381 @@
         }
 
         .shape-1 {
-            width: 80px;
-            height: 80px;
+            width: clamp(40px, 8vw, 80px);
+            height: clamp(40px, 8vw, 80px);
             top: 20%;
             left: 10%;
             animation-delay: 0s;
         }
 
         .shape-2 {
-            width: 120px;
-            height: 120px;
+            width: clamp(60px, 12vw, 120px);
+            height: clamp(60px, 12vw, 120px);
             top: 60%;
             right: 10%;
             animation-delay: 2s;
         }
 
         .shape-3 {
-            width: 60px;
-            height: 60px;
+            width: clamp(30px, 6vw, 60px);
+            height: clamp(30px, 6vw, 60px);
             top: 80%;
             left: 20%;
             animation-delay: 4s;
         }
 
-        /* Projects Section */
-        .projects {
-            background: var(--bg-light);
+        /* Desktop Specific Styles */
+        @media (min-width: 769px) {
+            .about-content {
+                grid-template-columns: 1fr 2fr;
+                text-align: left;
+            }
+
+            .about-image {
+                margin: 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .skill-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .project-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .contact-method:hover {
+                transform: translateX(10px);
+            }
+
+            .project-thumbnail::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .project-item:hover .project-thumbnail::before {
+                left: 100%;
+            }
         }
 
-        .project-filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+        /* Mobile Specific Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .section {
+                padding: 2.5rem 0;
+            }
+
+            .timeline {
+                padding-left: 0.5rem;
+            }
+
+            .timeline::before {
+                left: -0.25rem;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -1.25rem;
+            }
+
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .project-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-link {
+                width: 100%;
+                text-align: center;
+            }
+
+            .filter-btn {
+                flex: 1;
+                max-width: 200px;
+            }
+
+            /* Touch-friendly improvements */
+            .skill-card:hover {
+                transform: none;
+            }
+
+            .project-item:hover {
+                transform: none;
+            }
+
+            .contact-method:hover {
+                transform: none;
+                background: var(--primary-color);
+                color: white;
+            }
+
+            /* Better mobile spacing */
+            .hero::before {
+                display: none;
+            }
+
+            .floating-shape {
+                display: none;
+            }
+
+            .about-text {
+                text-align: left;
+            }
         }
 
-        .filter-btn {
-            background: var(--bg-white);
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .skill-card,
+            .timeline-item,
+            .education-card,
+            .project-item {
+                margin: 0 0 1.5rem 0;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+
+            .project-filters {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .projects-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid var(--bg-light);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
         }
 
-        .filter-btn.active,
-        .filter-btn:hover {
+        /* Landscape phone orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 70vh;
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* High resolution displays */
+        @media (min-resolution: 192dpi) {
+            .skill-icon,
+            .contact-icon {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .hero::before,
+            .floating-shape {
+                animation: none;
+            }
+
+            .fade-in {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #f9fafb;
+                --text-light: #d1d5db;
+                --bg-light: #111827;
+                --bg-white: #1f2937;
+            }
+
+            body {
+                background-color: var(--bg-light);
+            }
+
+            nav {
+                background: rgba(31, 41, 55, 0.95);
+            }
+
+            nav.scrolled {
+                background: rgba(31, 41, 55, 0.98);
+            }
+
+            .mobile-menu {
+                background: var(--bg-white);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .hero,
+            nav,
+            .mobile-menu,
+            .floating-shape,
+            .cta-button,
+            .project-links,
+            .contact-methods {
+                display: none !important;
+            }
+
+            .section {
+                padding: 1rem 0;
+                break-inside: avoid;
+            }
+
+            .project-item,
+            .skill-card,
+            .timeline-item {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+
+            body {
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+
+            .section-title {
+                font-size: 18pt;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .nav-links a:focus,
+        .mobile-nav-links a:focus,
+        .cta-button:focus,
+        .filter-btn:focus,
+        .project-link:focus,
+        .contact-method:focus,
+        .submit-btn:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
             background: var(--primary-color);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .projects-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-item {
-            background: var(--bg-white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .project-thumbnail {
-            height: 250px;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-thumbnail::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .project-item:hover .project-thumbnail::before {
-            left: 100%;
-        }
-
-        .project-info {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .project-client {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            padding: 8px;
             text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            border-radius: 4px;
+            z-index: 10000;
         }
 
-        .project-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .project-type-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .client-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        .project-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--bg-light);
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        /* Responsive adjustments */
-        .contact-method:hover .contact-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* Special WhatsApp styling */
-        .whatsapp-method:hover {
-            background: #25d366;
-            color: white;
-        }
-
-        /* Projects showcase */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .project-header {
-            height: 200px;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .skip-link:focus {
+            top: 6px;
         }
     </style>
 </head>
 <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Rona AlSayegh</div>
             <ul class="nav-links">
@@ -1162,544 +1202,585 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="hero-content">
-            <h1>Rona AlSayegh</h1>
-            <p class="hero-subtitle">Digital Marketing Specialist & Creative Designer</p>
-            <p style="margin-bottom: 2rem; opacity: 0.9;">Transforming brands through innovative design and strategic digital marketing</p>
-            <a href="#contact" class="cta-button">Let's Work Together</a>
-        </div>
-    </section>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose" aria-label="Close mobile menu">&times;</button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
-            <div class="about-content fade-in">
-                <div class="about-image">RA</div>
-                <div class="about-text">
-                    <p>I am a passionate professional with diverse expertise in graphic design, digital marketing, and educational management. With 7 years of experience as a Secretary and Graphic Designer at World of Signs Company, combined with 3 years of specialized digital marketing training, I bring a unique blend of creative and analytical skills to every project.</p>
-                    <br>
-                    <p>My goal is to drive organizational success by implementing creative marketing strategies, streamlining administrative processes, and delivering high-quality work through meticulous attention to detail and effective communication. I thrive in dynamic environments where I can leverage my skills in Photoshop, Corel Draw, digital marketing tools, and educational management to create meaningful impact.</p>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="floating-shape shape-1" aria-hidden="true"></div>
+            <div class="floating-shape shape-2" aria-hidden="true"></div>
+            <div class="floating-shape shape-3" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1>Rona AlSayegh</h1>
+                <p class="hero-subtitle">Digital Marketing Specialist & Creative Designer</p>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">Transforming brands through innovative design and strategic digital marketing</p>
+                <a href="#contact" class="cta-button">Let's Work Together</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title fade-in">About Me</h2>
+                <div class="about-content fade-in">
+                    <div class="about-image" aria-label="Rona AlSayegh initials">RA</div>
+                    <div class="about-text">
+                        <p>I am a passionate professional with diverse expertise in graphic design, digital marketing, and educational management. With 7 years of experience as a Secretary and Graphic Designer at World of Signs Company, combined with 3 years of specialized digital marketing training, I bring a unique blend of creative and analytical skills to every project.</p>
+                        <br>
+                        <p>My goal is to drive organizational success by implementing creative marketing strategies, streamlining administrative processes, and delivering high-quality work through meticulous attention to detail and effective communication. I thrive in dynamic environments where I can leverage my skills in Photoshop, Corel Draw, digital marketing tools, and educational management to create meaningful impact.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Skills & Expertise</h2>
-            <div class="skills-grid fade-in">
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>Graphic Design</h3>
-                    <p>Expert in Photoshop, CorelDraw, and Canva. Creating compelling visual content that captures attention and communicates effectively.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>Digital Marketing</h3>
-                    <p>Proficient in Later app, Mailchimp campaigns, Stripo, social media platforms, and comprehensive digital marketing strategies.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">💼</div>
-                    <h3>Administration</h3>
-                    <p>Strong organizational skills, data entry expertise, and proficiency in Microsoft Office Suite and Sidra accounting program.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎓</div>
-                    <h3>Education Management</h3>
-                    <p>Bachelor's degree in Educational Management with hands-on experience in classroom management and teaching methodologies.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>Languages</h3>
-                    <p>Fluent in English and Arabic with excellent written and oral communication skills in both languages.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎬</div>
-                    <h3>Content Creation</h3>
-                    <p>Video editing, blogging, and content creation across multiple platforms with a focus on engaging storytelling.</p>
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Skills & Expertise</h2>
+                <div class="skills-grid fade-in">
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">🎨</div>
+                        <h3>Graphic Design</h3>
+                        <p>Expert in Photoshop, CorelDraw, and Canva. Creating compelling visual content that captures attention and communicates effectively.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">📱</div>
+                        <h3>Digital Marketing</h3>
+                        <p>Proficient in Later app, Mailchimp campaigns, Stripo, social media platforms, and comprehensive digital marketing strategies.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">💼</div>
+                        <h3>Administration</h3>
+                        <p>Strong organizational skills, data entry expertise, and proficiency in Microsoft Office Suite and Sidra accounting program.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">🎓</div>
+                        <h3>Education Management</h3>
+                        <p>Bachelor's degree in Educational Management with hands-on experience in classroom management and teaching methodologies.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">🌐</div>
+                        <h3>Languages</h3>
+                        <p>Fluent in English and Arabic with excellent written and oral communication skills in both languages.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon" aria-hidden="true">🎬</div>
+                        <h3>Content Creation</h3>
+                        <p>Video editing, blogging, and content creation across multiple platforms with a focus on engaging storytelling.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
-            
-            <div class="project-filters fade-in">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="content">Articles & Content</button>
-                <button class="filter-btn" data-filter="social">Social Media</button>
-                <button class="filter-btn" data-filter="design">Design Work</button>
+        <!-- Projects Section -->
+        <section id="projects" class="section projects">
+            <div class="container">
+                <h2 class="section-title fade-in">Featured Projects</h2>
+                
+                <div class="project-filters fade-in" role="tablist" aria-label="Project categories">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects</button>
+                    <button class="filter-btn" data-filter="content" role="tab" aria-selected="false">Articles & Content</button>
+                    <button class="filter-btn" data-filter="social" role="tab" aria-selected="false">Social Media</button>
+                    <button class="filter-btn" data-filter="design" role="tab" aria-selected="false">Design Work</button>
+                </div>
+
+                <div class="projects-showcase fade-in">
+                    <!-- Dr. Nikki Cohen Website Articles -->
+                    <article class="project-item" data-category="content">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Content</div>
+                            <span aria-hidden="true">📝</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="NK logo">NK</div>
+                                <div>
+                                    <h3 class="project-title">Website Articles & Content</h3>
+                                    <div class="project-client">Dr. Nikki Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Created engaging articles and managed data entry for Dr. Nikki Cohen's medical website. Developed educational content, patient resources, and informative blog posts to enhance the website's value and SEO.</p>
+                            <div class="project-links">
+                                <a href="https://www.drnikkicohen.com/" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📄</span> View Articles
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Medical</div>
+                                    <div class="stat-label">Industry</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Content Writing</div>
+                                    <div class="stat-label">Service</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">2024</div>
+                                    <div class="stat-label">Year</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dr. Nikki Cohen Instagram Post 1 -->
+                    <article class="project-item" data-category="social">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Instagram</div>
+                            <span aria-hidden="true">📸</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="NK logo">NK</div>
+                                <div>
+                                    <h3 class="project-title">Instagram Post Design</h3>
+                                    <div class="project-client">Dr. Nikki Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Created engaging Instagram post content with professional medical branding, optimized for social media engagement and patient education.</p>
+                            <div class="project-links">
+                                <a href="https://www.instagram.com/p/CkrrJ0_N4hi/?igsh=NDVmZGs1cWNybnZn" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📱</span> View Post
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Social</div>
+                                    <div class="stat-label">Platform</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Design</div>
+                                    <div class="stat-label">Type</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Medical</div>
+                                    <div class="stat-label">Niche</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dr. Nikki Cohen Instagram Post 2 -->
+                    <article class="project-item" data-category="social">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Instagram</div>
+                            <span aria-hidden="true">🎨</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="NK logo">NK</div>
+                                <div>
+                                    <h3 class="project-title">Educational Instagram Content</h3>
+                                    <div class="project-client">Dr. Nikki Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Developed educational social media content combining medical expertise with engaging visual design to inform and attract patients.</p>
+                            <div class="project-links">
+                                <a href="https://www.instagram.com/p/CkesVVnN9Iy/?igsh=bDIyNDVpZzlua3No" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📱</span> View Post
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Educational</div>
+                                    <div class="stat-label">Content</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Instagram</div>
+                                    <div class="stat-label">Platform</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Visual</div>
+                                    <div class="stat-label">Medium</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dr. Nikki Cohen Instagram Reel -->
+                    <article class="project-item" data-category="social">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Reel</div>
+                            <span aria-hidden="true">🎬</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="NK logo">NK</div>
+                                <div>
+                                    <h3 class="project-title">Instagram Reel Creation</h3>
+                                    <div class="project-client">Dr. Nikki Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Created and edited engaging video content for Instagram Reels, combining video editing skills with strategic content planning for maximum reach and patient engagement.</p>
+                            <div class="project-links">
+                                <a href="https://www.instagram.com/reel/CiSchHVD0Rj/?igsh=ZmFtcWlwZHY0bzd1" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">🎥</span> View Reel
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Video</div>
+                                    <div class="stat-label">Format</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Editing</div>
+                                    <div class="stat-label">Skill</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Engagement</div>
+                                    <div class="stat-label">Goal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dr. Joseph Cohen Website Articles -->
+                    <article class="project-item" data-category="content">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Content</div>
+                            <span aria-hidden="true">📊</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="JC logo">JC</div>
+                                <div>
+                                    <h3 class="project-title">Website Content & Data Management</h3>
+                                    <div class="project-client">Dr. Joseph Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Managed content creation and data entry for Cohen Optometry website. Wrote informative articles about eye care, updated patient resources, and maintained website databases with accurate information.</p>
+                            <div class="project-links">
+                                <a href="https://cohenoptometry.com/" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📄</span> View Content
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Optometry</div>
+                                    <div class="stat-label">Industry</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Content + Data</div>
+                                    <div class="stat-label">Services</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">2024</div>
+                                    <div class="stat-label">Year</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Dr. Joseph Cohen Facebook Post -->
+                    <article class="project-item" data-category="social">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Facebook</div>
+                            <span aria-hidden="true">📘</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="JC logo">JC</div>
+                                <div>
+                                    <h3 class="project-title">Facebook Marketing Campaign</h3>
+                                    <div class="project-client">Dr. Joseph Cohen</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Created strategic Facebook content to promote optometry services, featuring professional design and targeted messaging for patient acquisition.</p>
+                            <div class="project-links">
+                                <a href="https://www.facebook.com/share/p/1Aunin9VzY/" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📘</span> View Post
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Facebook</div>
+                                    <div class="stat-label">Platform</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Marketing</div>
+                                    <div class="stat-label">Purpose</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Medical</div>
+                                    <div class="stat-label">Sector</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Daniel Walters Eyewear Company -->
+                    <article class="project-item" data-category="all">
+                        <div class="project-thumbnail">
+                            <div class="project-type-badge">Content</div>
+                            <span aria-hidden="true">📝</span>
+                        </div>
+                        <div class="project-info">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div class="client-logo" aria-label="DW logo">DW</div>
+                                <div>
+                                    <h3 class="project-title">Website Content, Articles & Social Media Posts</h3>
+                                    <div class="project-client">Daniel Walters Eyewear</div>
+                                </div>
+                            </div>
+                            <p class="project-description">Created engaging articles, managed data entry, and crafted social media posts for Daniel Walters Eyewear, contributing to brand visibility and online engagement.</p>
+                            <div class="project-links">
+                                <a href="https://danielwalters.com/" target="_blank" rel="noopener" class="project-link">
+                                    <span aria-hidden="true">📄</span> View Website
+                                </a>
+                            </div>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">Eyewear</div>
+                                    <div class="stat-label">Industry</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">Content + Data</div>
+                                    <div class="stat-label">Services</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">2024</div>
+                                    <div class="stat-label">Year</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Portfolio Showcase Summary -->
+                    <article class="project-item" data-category="all" style="grid-column: 1 / -1;">
+                        <div class="project-thumbnail" style="height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="project-type-badge">Portfolio</div>
+                            <span aria-hidden="true">⭐</span>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Complete Digital Marketing Portfolio</h3>
+                            <div class="project-client">Healthcare Industry Specialist</div>
+                            <p class="project-description">Comprehensive digital marketing and design services for medical professionals, including website development, social media management, content creation, and brand development across multiple platforms and mediums.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <div class="stat-number">1000+</div>
+                                    <div class="stat-label">Clients</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">1000+</div>
+                                    <div class="stat-label">Projects</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">10+</div>
+                                    <div class="stat-label">Platforms</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Success</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="projects-showcase fade-in">
-                <!-- Dr. Nikki Cohen Website Articles -->
-                <div class="project-item" data-category="content">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Content</div>
-                        📝
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">NK</div>
-                            <div>
-                                <div class="project-title">Website Articles & Content</div>
-                                <div class="project-client">Dr. Nikki Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Created engaging articles and managed data entry for Dr. Nikki Cohen's medical website. Developed educational content, patient resources, and informative blog posts to enhance the website's value and SEO.</p>
-                        <div class="project-links">
-                            <a href="https://www.drnikkicohen.com/" target="_blank" class="project-link">
-                                📄 View Articles
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Medical</div>
-                                <div class="stat-label">Industry</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Content Writing</div>
-                                <div class="stat-label">Service</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">2024</div>
-                                <div class="stat-label">Year</div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Professional Experience</h2>
+                <div class="timeline fade-in">
+                    <article class="timeline-item">
+                        <h3>Secretary & Graphic Designer</h3>
+                        <h4>World of Signs Company</h4>
+                        <p><strong>Duration:</strong> 7 years</p>
+                        <p>Managed administrative operations while creating compelling graphic designs. Developed strong organizational skills and creative problem-solving abilities in a fast-paced business environment.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <h3>Digital Marketing Specialist</h3>
+                        <h4>Specialized Training & Implementation</h4>
+                        <p><strong>Duration:</strong> 5 years</p>
+                        <p>Completed comprehensive digital marketing coursework and gained hands-on experience with email marketing campaigns, social media management, and digital strategy development.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <h3>Educational Assistant</h3>
+                        <h4>Ishraq School & Ramlieh Official School</h4>
+                        <p><strong>Duration:</strong> 6 years</p>
+                        <p>Supported educational activities for grades KG1-6, developing classroom management skills and educational content creation expertise.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <h3>Private Teacher</h3>
+                        <h4>Independent Practice</h4>
+                        <p><strong>Duration:</strong> 2 years</p>
+                        <p>Provided personalized educational support, developing strong communication skills and adaptive teaching methodologies.</p>
+                    </article>
                 </div>
+            </div>
+        </section>
 
-                <!-- Dr. Nikki Cohen Instagram Post 1 -->
-                <div class="project-item" data-category="social">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Instagram</div>
-                        📸
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">NK</div>
-                            <div>
-                                <div class="project-title">Instagram Post Design</div>
-                                <div class="project-client">Dr. Nikki Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Created engaging Instagram post content with professional medical branding, optimized for social media engagement and patient education.</p>
-                        <div class="project-links">
-                            <a href="https://www.instagram.com/p/CkrrJ0_N4hi/?igsh=NDVmZGs1cWNybnZn" target="_blank" class="project-link">
-                                📱 View Post
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Social</div>
-                                <div class="stat-label">Platform</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Design</div>
-                                <div class="stat-label">Type</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Medical</div>
-                                <div class="stat-label">Niche</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dr. Nikki Cohen Instagram Post 2 -->
-                <div class="project-item" data-category="social">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Instagram</div>
-                        🎨
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">NK</div>
-                            <div>
-                                <div class="project-title">Educational Instagram Content</div>
-                                <div class="project-client">Dr. Nikki Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Developed educational social media content combining medical expertise with engaging visual design to inform and attract patients.</p>
-                        <div class="project-links">
-                            <a href="https://www.instagram.com/p/CkesVVnN9Iy/?igsh=bDIyNDVpZzlua3No" target="_blank" class="project-link">
-                                📱 View Post
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Educational</div>
-                                <div class="stat-label">Content</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Instagram</div>
-                                <div class="stat-label">Platform</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Visual</div>
-                                <div class="stat-label">Medium</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dr. Nikki Cohen Instagram Reel -->
-                <div class="project-item" data-category="social">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Reel</div>
-                        🎬
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">NK</div>
-                            <div>
-                                <div class="project-title">Instagram Reel Creation</div>
-                                <div class="project-client">Dr. Nikki Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Created and edited engaging video content for Instagram Reels, combining video editing skills with strategic content planning for maximum reach and patient engagement.</p>
-                        <div class="project-links">
-                            <a href="https://www.instagram.com/reel/CiSchHVD0Rj/?igsh=ZmFtcWlwZHY0bzd1" target="_blank" class="project-link">
-                                🎥 View Reel
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Video</div>
-                                <div class="stat-label">Format</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Editing</div>
-                                <div class="stat-label">Skill</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Engagement</div>
-                                <div class="stat-label">Goal</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dr. Joseph Cohen Website Articles -->
-                <div class="project-item" data-category="content">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Content</div>
-                        📊
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">JC</div>
-                            <div>
-                                <div class="project-title">Website Content & Data Management</div>
-                                <div class="project-client">Dr. Joseph Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Managed content creation and data entry for Cohen Optometry website. Wrote informative articles about eye care, updated patient resources, and maintained website databases with accurate information.</p>
-                        <div class="project-links">
-                            <a href="https://cohenoptometry.com/" target="_blank" class="project-link">
-                                📄 View Content
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Optometry</div>
-                                <div class="stat-label">Industry</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Content + Data</div>
-                                <div class="stat-label">Services</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">2024</div>
-                                <div class="stat-label">Year</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-   <!-- Dr. Joseph Cohen Facebook Post -->
-                <div class="project-item" data-category="social">
-                    <div class="project-thumbnail">
-                        <div class="project-type-badge">Facebook</div>
-                        📘
-                    </div>
-                    <div class="project-info">
-                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <div class="client-logo">JC</div>
-                            <div>
-                                <div class="project-title">Facebook Marketing Campaign</div>
-                                <div class="project-client">Dr. Joseph Cohen</div>
-                            </div>
-                        </div>
-                        <p class="project-description">Created strategic Facebook content to promote optometry services, featuring professional design and targeted messaging for patient acquisition.</p>
-                        <div class="project-links">
-                            <a href="https://www.facebook.com/share/p/1Aunin9VzY/" target="_blank" class="project-link">
-                                📘 View Post
-                            </a>
-                        </div>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">Facebook</div>
-                                <div class="stat-label">Platform</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Marketing</div>
-                                <div class="stat-label">Purpose</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">Medical</div>
-                                <div class="stat-label">Sector</div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Education Section -->
+        <section id="education" class="section education">
+            <div class="container">
+                <h2 class="section-title fade-in">Education & Training</h2>
+                <div class="education-grid fade-in">
+                    <article class="education-card">
+                        <h3>Bachelor in Educational Management</h3>
+                        <h4>Modern University for Business and Science (MUBS)</h4>
+                        <p>Comprehensive coursework including Leadership, Management, Psychology, Research Methods, and Educational Administration.</p>
+                    </article>
+                    <article class="education-card">
+                        <h3>Baccalaureate in Education</h3>
+                        <h4>Byblos Institution, Aley</h4>
+                        <p>Foundation in educational principles, teaching methodologies, and classroom management techniques.</p>
+                    </article>
                 </div>
                 
-                <!-- Daniel Walters Eyewear Company -->
-<div class="project-item" data-category="all">
-    <div class="project-thumbnail">
-        <div class="project-type-badge">Content</div>
-        📝
-    </div>
-    <div class="project-info">
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-            <div class="client-logo">DW</div>
-            <div>
-                <div class="project-title">Website Content, Articles & Social Media Posts</div>
-                <div class="project-client">Daniel Walters Eyewear</div>
-            </div>
-        </div>
-        <p class="project-description">Created engaging articles, managed data entry, and crafted social media posts for Daniel Walters Eyewear, contributing to brand visibility and online engagement.</p>
-        <div class="project-links">
-            <a href="https://danielwalters.com/" target="_blank" class="project-link">
-                📄 View Website
-            </a>
-        </div>
-        <div class="project-stats">
-            <div class="stat">
-                <div class="stat-number">Eyewear</div>
-                <div class="stat-label">Industry</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">Content + Data</div>
-                <div class="stat-label">Services</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">2024</div>
-                <div class="stat-label">Year</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-                <!-- Portfolio Showcase Summary -->
-                <div class="project-item" data-category="all" style="grid-column: 1 / -1;">
-                    <div class="project-thumbnail" style="height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <div class="project-type-badge">Portfolio</div>
-                        ⭐
+                <div style="margin-top: 3rem;">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Research Projects</h3>
+                    <div class="projects-grid fade-in">
+                        <article class="project-card">
+                            <div class="project-header" aria-hidden="true">🚀</div>
+                            <div class="project-content">
+                                <h4>Motivation & Performance</h4>
+                                <p>Research on the correlation between employee motivation and organizational performance metrics.</p>
+                                <div class="project-tags">
+                                    <span class="tag">HR</span>
+                                    <span class="tag">Performance</span>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="project-info">
-                        <div class="project-title">Complete Digital Marketing Portfolio</div>
-                        <div class="project-client">Healthcare Industry Specialist</div>
-                        <p class="project-description">Comprehensive digital marketing and design services for medical professionals, including website development, social media management, content creation, and brand development across multiple platforms and mediums.</p>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number">1000+</div>
-                                <div class="stat-label">Clients</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">1000+</div>
-                                <div class="stat-label">Projects</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">10+</div>
-                                <div class="stat-label">Platforms</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">100%</div>
-                                <div class="stat-label">Success</div>
-                            </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2 class="section-title fade-in">Let's Connect</h2>
+                <div class="contact-container fade-in">
+                    <div class="contact-info">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Get In Touch</h3>
+                        <p style="color: var(--text-light); margin-bottom: 2rem;">Ready to collaborate? Choose your preferred way to reach out!</p>
+                        
+                        <div class="contact-methods">
+                            <a href="mailto:ronasayegh17@gmail.com" class="contact-method">
+                                <div class="contact-icon email-icon" aria-hidden="true">✉️</div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <br><span style="color: var(--text-light);">ronasayegh17@gmail.com</span>
+                                </div>
+                            </a>
+                            
+                            <a href="tel:+96171186043" class="contact-method">
+                                <div class="contact-icon phone-icon" aria-hidden="true">📞</div>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <br><span style="color: var(--text-light);">+961 71-186043</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://wa.me/96171186043" class="contact-method whatsapp-method" target="_blank" rel="noopener">
+                                <div class="contact-icon whatsapp-icon" aria-hidden="true">💬</div>
+                                <div>
+                                    <strong>WhatsApp</strong>
+                                    <br><span style="color: var(--text-light);">Quick message on WhatsApp</span>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-radius: 10px;">
+                            <p><strong>📍 Location:</strong> Aley, Lebanon</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title fade-in">Professional Experience</h2>
-            <div class="timeline fade-in">
-                <div class="timeline-item">
-                    <h3>Secretary & Graphic Designer</h3>
-                    <h4>World of Signs Company</h4>
-                    <p><strong>Duration:</strong> 7 years</p>
-                    <p>Managed administrative operations while creating compelling graphic designs. Developed strong organizational skills and creative problem-solving abilities in a fast-paced business environment.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Digital Marketing Specialist</h3>
-                    <h4>Specialized Training & Implementation</h4>
-                    <p><strong>Duration:</strong> 5 years</p>
-                    <p>Completed comprehensive digital marketing coursework and gained hands-on experience with email marketing campaigns, social media management, and digital strategy development.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Educational Assistant</h3>
-                    <h4>Ishraq School & Ramlieh Official School</h4>
-                    <p><strong>Duration:</strong> 6 years</p>
-                    <p>Supported educational activities for grades KG1-6, developing classroom management skills and educational content creation expertise.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Private Teacher</h3>
-                    <h4>Independent Practice</h4>
-                    <p><strong>Duration:</strong> 2 years</p>
-                    <p>Provided personalized educational support, developing strong communication skills and adaptive teaching methodologies.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section education">
-        <div class="container">
-            <h2 class="section-title fade-in">Education & Training</h2>
-            <div class="education-grid fade-in">
-                <div class="education-card">
-                    <h3>Bachelor in Educational Management</h3>
-                    <h4>Modern University for Business and Science (MUBS)</h4>
-                    <p>Comprehensive coursework including Leadership, Management, Psychology, Research Methods, and Educational Administration.</p>
-                </div>
-                <div class="education-card">
-                    <h3>Baccalaureate in Education</h3>
-                    <h4>Byblos Institution, Aley</h4>
-                    <p>Foundation in educational principles, teaching methodologies, and classroom management techniques.</p>
-                </div>
-            </div>
-            
-            <div style="margin-top: 3rem;">
-                <h3 style="text-align: center; margin-bottom: 2rem;">Research Projects</h3>
-                <div class="projects-grid fade-in">
-                    <div class="project-card">
-                        <div class="project-header">📊</div>
-                        <div class="project-content">
-                            <h4>Leadership & Management Analysis</h4>
-                            <p>Comprehensive research on leadership styles and their impact on organizational performance.</p>
-                            <div class="project-tags">
-                                <span class="tag">Leadership</span>
-                                <span class="tag">Management</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">🔍</div>
-                        <div class="project-content">
-                            <h4>SWOT Analysis Framework</h4>
-                            <p>Strategic analysis methodology for evaluating organizational strengths, weaknesses, opportunities, and threats.</p>
-                            <div class="project-tags">
-                                <span class="tag">Strategy</span>
-                                <span class="tag">Analysis</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">🚀</div>
-                        <div class="project-content">
-                            <h4>Motivation & Performance</h4>
-                            <p>Research on the correlation between employee motivation and organizational performance metrics.</p>
-                            <div class="project-tags">
-                                <span class="tag">HR</span>
-                                <span class="tag">Performance</span>
+                    
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required aria-describedby="name-error">
+                                <div id="name-error" class="error-message" aria-live="polite"></div>
                             </div>
                             
-                        </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required aria-describedby="email-error">
+                                <div id="email-error" class="error-message" aria-live="polite"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
+                                <div id="subject-error" class="error-message" aria-live="polite"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
+                                <div id="message-error" class="error-message" aria-live="polite"></div>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title fade-in">Let's Connect</h2>
-            <div class="contact-container fade-in">
-                <div class="contact-info">
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Get In Touch</h3>
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">Ready to collaborate? Choose your preferred way to reach out!</p>
-                    
-                    <div class="contact-methods">
-                        <a href="mailto:ronasayegh17@gmail.com" class="contact-method">
-                            <div class="contact-icon email-icon">✉️</div>
-                            <div>
-                                <strong>Email</strong>
-                                <br><span style="color: var(--text-light);">ronasayegh17@gmail.com</span>
-                            </div>
-                        </a>
-                        
-                        <a href="tel:+96171186043" class="contact-method">
-                            <div class="contact-icon phone-icon">📞</div>
-                            <div>
-                                <strong>Phone</strong>
-                                <br><span style="color: var(--text-light);">+961 71-186043</span>
-                            </div>
-                        </a>
-                        
-                        <a href="https://wa.me/96171186043" class="contact-method whatsapp-method" target="_blank">
-                            <div class="contact-icon whatsapp-icon">💬</div>
-                            <div>
-                                <strong>WhatsApp</strong>
-                                <br><span style="color: var(--text-light);">Quick message on WhatsApp</span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-light); border-radius: 10px;">
-                        <p><strong>📍 Location:</strong> Aley, Lebanon</p>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script>
+        // Mobile menu functionality
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', !isOpen);
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+        mobileClose.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on links
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -1716,9 +1797,10 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
@@ -1742,10 +1824,47 @@
             observer.observe(el);
         });
 
+        // Form validation
+        function validateForm() {
+            const form = document.getElementById('contactForm');
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const errorDiv = document.getElementById(`${input.name}-error`);
+                let error = '';
+
+                if (!input.value.trim()) {
+                    error = `${input.labels[0].textContent} is required`;
+                    isValid = false;
+                } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+                    error = 'Please enter a valid email address';
+                    isValid = false;
+                }
+
+                if (error) {
+                    input.classList.add('error');
+                    errorDiv.textContent = error;
+                    errorDiv.style.color = '#dc2626';
+                    errorDiv.style.fontSize = '0.875rem';
+                    errorDiv.style.marginTop = '0.25rem';
+                } else {
+                    input.classList.remove('error');
+                    errorDiv.textContent = '';
+                }
+            });
+
+            return isValid;
+        }
+
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            if (!validateForm()) {
+                return;
+            }
+
             const formData = new FormData(this);
             const name = formData.get('name');
             const email = formData.get('email');
@@ -1771,21 +1890,40 @@
             }, 3000);
         });
 
+        // Real-time form validation
+        document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(input => {
+            input.addEventListener('blur', validateForm);
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateForm();
+                }
+            });
+        });
+
         // Project filtering functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectItems = document.querySelectorAll('.project-item');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
+                // Remove active class and aria-selected from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                
+                // Add active class and aria-selected to clicked button
                 btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
                 
                 const filterValue = btn.getAttribute('data-filter');
                 
                 projectItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue || item.getAttribute('data-category') === 'all') {
+                    const shouldShow = filterValue === 'all' || 
+                                     item.getAttribute('data-category') === filterValue || 
+                                     item.getAttribute('data-category') === 'all';
+                    
+                    if (shouldShow) {
                         item.style.display = 'block';
                         item.style.animation = 'fadeInUp 0.5s ease';
                     } else {
@@ -1795,18 +1933,20 @@
             });
         });
 
-        // Add interactive effects
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+        // Add interactive effects for desktop
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.skill-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+        }
 
-        // Contact method click analytics (optional tracking)
+        // Contact method click analytics
         document.querySelectorAll('.contact-method').forEach(method => {
             method.addEventListener('click', function() {
                 const methodType = this.querySelector('strong').textContent;
@@ -1816,41 +1956,161 @@
 
         // Add typing effect to hero subtitle
         const subtitle = document.querySelector('.hero-subtitle');
-        const originalText = subtitle.textContent;
-        subtitle.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                subtitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
-        
-        setTimeout(typeWriter, 1000);
-
-        // Parallax effect for floating shapes
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.floating-shape');
+        if (subtitle) {
+            const originalText = subtitle.textContent;
+            subtitle.textContent = '';
             
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    subtitle.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        }
+
+        // Parallax effect for floating shapes (desktop only)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px)`;
+                });
             });
+        }
+
+        // Add glow effect to contact methods on hover (desktop only)
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.contact-method').forEach(method => {
+                method.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 0 30px rgba(99, 102, 241, 0.3)';
+                });
+                
+                method.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+
+        // Keyboard navigation improvements
+        document.addEventListener('keydown', (e) => {
+            // Navigate through filter buttons with arrow keys
+            if (document.activeElement.classList.contains('filter-btn')) {
+                const buttons = Array.from(filterBtns);
+                const currentIndex = buttons.indexOf(document.activeElement);
+                
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevIndex = currentIndex > 0 ? currentIndex - 1 : buttons.length - 1;
+                    buttons[prevIndex].focus();
+                } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextIndex = currentIndex < buttons.length - 1 ? currentIndex + 1 : 0;
+                    buttons[nextIndex].focus();
+                }
+            }
         });
 
-        // Add glow effect to contact methods on hover
-        document.querySelectorAll('.contact-method').forEach(method => {
-            method.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 0 30px rgba(99, 102, 241, 0.3)';
+        // Lazy loading for project images (if any were added)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
             });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debounce to scroll events
+        const debouncedScroll = debounce(() => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, 10);
+
+        window.addEventListener('scroll', debouncedScroll);
+
+        // Add error styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .form-group input.error,
+            .form-group textarea.error {
+                border-color: #dc2626;
+                box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+            }
             
-            method.addEventListener('mouseleave', function() {
-                this.style.boxShadow = '';
-            });
+            .error-message {
+                color: #dc2626;
+                font-size: 0.875rem;
+                margin-top: 0.25rem;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial ARIA states
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            
+            // Add loading complete class for animations
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
         });
     </script>
 </body>
-</html>
+</html>d">
+                            <div class="project-header" aria-hidden="true">📊</div>
+                            <div class="project-content">
+                                <h4>Leadership & Management Analysis</h4>
+                                <p>Comprehensive research on leadership styles and their impact on organizational performance.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Leadership</span>
+                                    <span class="tag">Management</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="project-card">
+                            <div class="project-header" aria-hidden="true">🔍</div>
+                            <div class="project-content">
+                                <h4>SWOT Analysis Framework</h4>
+                                <p>Strategic analysis methodology for evaluating organizational strengths, weaknesses, opportunities, and threats.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Strategy</span>
+                                    <span class="tag">Analysis</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="project-car
