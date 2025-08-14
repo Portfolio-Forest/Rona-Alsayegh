@@ -1,36 +1,293 @@
-<!-- Daniel Walters Eyewear Company Project -->
-<div class="project-item" data-category="content">
-    <div class="project-thumbnail">
-        <div class="project-type-badge">Content</div>
-        📝
-    </div>
-    <div class="project-info">
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-            <div class="client-logo">DW</div>
-            <div>
-                <div class="project-title">Articles & Social Media Posts</div>
-                <div class="project-client">Daniel Walters Eyewear</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rona AlSayegh - Digital Marketing & Design Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+            padding: 5rem 0;
+        }
+
+        .projects-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-item {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-thumbnail {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            background: var(--bg-white);
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* New Project Card for Daniel Walters Eyewear */
+        .project-item.daniel {
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile-responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-info {
+                padding: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-description {
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Rona AlSayegh</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Rona AlSayegh</h1>
+            <p class="hero-subtitle">Digital Marketing Specialist & Creative Designer</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="projects-showcase">
+            <!-- Daniel Walters Eyewear Project -->
+            <div class="project-item daniel">
+                <div class="project-thumbnail">
+                    📝
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-title">Articles & Social Media Posts</div>
+                        <div class="project-client">Daniel Walters Eyewear</div>
+                    </div>
+                    <p class="project-description">Created articles, handled data entry, and developed social media posts for Daniel Walters Eyewear Company. Worked to boost their online presence and customer engagement.</p>
+                    <div class="project-links">
+                        <a href="https://danielwalters.com" target="_blank" class="project-link">
+                            🌐 Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Other Projects (Example) -->
+            <div class="project-item">
+                <div class="project-thumbnail">
+                    📝
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-title">Sample Project</div>
+                        <div class="project-client">Client Name</div>
+                    </div>
+                    <p class="project-description">This is an example project description.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-link">
+                            🌐 Visit Website
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="project-description">Created articles, handled data entry, and developed social media posts for Daniel Walters Eyewear Company. Worked to boost their online presence and customer engagement.</p>
-        <div class="project-links">
-            <a href="https://danielwalters.com" target="_blank" class="project-link">
-                🌐 Visit Website
-            </a>
-        </div>
-        <div class="project-stats">
-            <div class="stat">
-                <div class="stat-number">Eyewear</div>
-                <div class="stat-label">Industry</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">Content Creation</div>
-                <div class="stat-label">Service</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">2024</div>
-                <div class="stat-label">Year</div>
-            </div>
-        </div>
-    </div>
-</div>
+    </section>
+
+</body>
+</html>
