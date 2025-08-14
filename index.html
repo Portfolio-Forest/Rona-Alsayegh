@@ -1,150 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rona Alsayegh - Portfolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #fff;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-        header {
-            text-align: center;
-            padding: 2rem;
-            background-color: #f8f8f8;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            margin: 0;
-        }
-        h1 {
-            font-size: 2.5rem;
-        }
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
-        section {
-            padding: 2rem;
-        }
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .project-card {
-            background: #f8f8f8;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.6s ease, box-shadow 0.3s ease, opacity 0.6s ease;
-        }
-        .project-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .project-info {
-            padding: 1rem;
-        }
-        .project-info h3 {
-            margin: 0 0 0.5rem;
-        }
-        .project-info p {
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #f8f8f8;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Rona Alsayegh - Portfolio</h1>
-    </header>
-
-    <section class="about">
-        <h2>About Me</h2>
-        <p style="max-width: 800px; margin: 1rem auto; text-align: center;">I am Rona Alsayegh, a dedicated professional with expertise in creating and managing engaging content, designing user-friendly experiences, and delivering quality results. My work spans across diverse industries and reflects creativity, accuracy, and a keen eye for detail.</p>
-    </section>
-
-    <section class="projects-section">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project-card">
-                <img src="https://source.unsplash.com/600x400/?design,website" alt="Project 1">
-                <div class="project-info">
-                    <h3>Project 1</h3>
-                    <p>Description of project 1.</p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="https://source.unsplash.com/600x400/?business,branding" alt="Project 2">
-                <div class="project-info">
-                    <h3>Project 2</h3>
-                    <p>Description of project 2.</p>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="https://danielwalters.com/cdn/shop/files/Daniel-Walters-eyewear.jpg?v=168" alt="Daniel Walters Eyewear">
-                <div class="project-info">
-                    <h3><a href="https://danielwalters.com/" target="_blank">Daniel Walters Eyewear</a></h3>
-                    <p>Articles, data entry, posts, and more for the Daniel Walters Eyewear company.</p>
-                </div>
+<!-- Daniel Walters Eyewear Company Project -->
+<div class="project-item" data-category="content">
+    <div class="project-thumbnail">
+        <div class="project-type-badge">Content</div>
+        📝
+    </div>
+    <div class="project-info">
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <div class="client-logo">DW</div>
+            <div>
+                <div class="project-title">Articles & Social Media Posts</div>
+                <div class="project-client">Daniel Walters Eyewear</div>
             </div>
         </div>
-    </section>
-
-    <section class="contact">
-        <h2>Contact</h2>
-        <p style="max-width: 800px; margin: 1rem auto; text-align: center;">Feel free to reach out for collaborations, project inquiries, or just to say hello.</p>
-        <p style="text-align: center;">
-            <a href="mailto:rona@example.com">rona@example.com</a>
-        </p>
-    </section>
-
-    <footer>
-        &copy; 2025 Rona Alsayegh. All rights reserved.
-    </footer>
-
-    <script>
-        const cards = document.querySelectorAll('.project-card');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        cards.forEach(card => observer.observe(card));
-    </script>
-</body>
-</html>
+        <p class="project-description">Created articles, handled data entry, and developed social media posts for Daniel Walters Eyewear Company. Worked to boost their online presence and customer engagement.</p>
+        <div class="project-links">
+            <a href="https://danielwalters.com" target="_blank" class="project-link">
+                🌐 Visit Website
+            </a>
+        </div>
+        <div class="project-stats">
+            <div class="stat">
+                <div class="stat-number">Eyewear</div>
+                <div class="stat-label">Industry</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Content Creation</div>
+                <div class="stat-label">Service</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2024</div>
+                <div class="stat-label">Year</div>
+            </div>
+        </div>
+    </div>
+</div>
